@@ -35,6 +35,9 @@ def msgHndlr(update: Update, context: CallbackContext) :
         db.createNewProfile(userInfo)
         context.bot.send_message(chat_id=update.effective_chat.id, text='Аккаунт добавлен')
 
+def repliedMsg(update: Update, context: CallbackContext) :
+    print(update.message)
+
 def start(update: Update, context: CallbackContext) :
     context.bot.send_message(chat_id=update.effective_chat.id, text='Чтобы получить контент из поста Инстаграм, просто пришли мне ссылку на пост')
 
@@ -44,5 +47,8 @@ if __name__ == '__main__' :
 
     post_handler = MessageHandler(Filters.text & (~Filters.command), msgHndlr)
     dispatcher.add_handler(post_handler)
+
+    repl_handler = MessageHandler(Filters.photo & (~Filters.command), repliedMsg)
+    dispatcher.add_handler(repl_handler)
 
     updater.start_polling()
