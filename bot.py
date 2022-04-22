@@ -19,7 +19,7 @@ dispatcher = updater.dispatcher
 def msgHndlr(update: Update, context: CallbackContext) :
     url = update.message.text
     if 'https://www.instagram.com/p/' in url:
-        media = ig.getMedia(url)
+        media = ig.getMediaFromPost(url=url)
         items = []
         for item in media['items'] :
             if item['type'] == 'photo' :

@@ -145,7 +145,7 @@ class Inst() :
         db = Database()
         sessionId = db.getCreds(cred='sessionId')
         cl.login_by_sessionid(sessionid=sessionId)
-        
+        #TODO:прописать проверку на корректность ссылок
         if url != None : 
             media = cl.media_pk_from_url(url)
             med= cl.media_info(media).dict()
